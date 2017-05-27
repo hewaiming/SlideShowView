@@ -377,7 +377,7 @@ public class SlideShowView extends FrameLayout {
         //显示图片的配置
         options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
-                .cacheOnDisk(true)
+                .cacheOnDisk(false)
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .showImageOnLoading(loadingAndFail)
                 .showImageOnFail(loadingAndFail)
@@ -396,12 +396,8 @@ public class SlideShowView extends FrameLayout {
                 .threadPriority(Thread.NORM_PRIORITY - 2)
                 .denyCacheImageMultipleSizesInMemory()
                 .memoryCache(new UsingFreqLimitedMemoryCache(2 * 1024 * 1024))
-                .memoryCacheSize(2 * 1024 * 1024)
-                .diskCacheSize(50 * 1024 * 1024)
-                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
-                .tasksProcessingOrder(QueueProcessingType.LIFO)
-                .diskCacheFileCount(100)
-                .diskCache(new UnlimitedDiskCache(cacheDir))
+                .memoryCacheSize(2 * 1024 * 1024)                
+                .tasksProcessingOrder(QueueProcessingType.LIFO)               
                 .build();
         imageLoader = ImageLoader.getInstance();
         imageLoader.init(config);
