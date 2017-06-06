@@ -2,6 +2,7 @@ package io.github.ylbfdev.slideshowview.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Environment;
 
 import java.io.File;
 
@@ -18,7 +19,9 @@ public class FileCache {
         // 判断外存SD卡挂载状态，如果挂载正常，创建SD卡缓存文件夹
         if (android.os.Environment.getExternalStorageState().equals(
                 android.os.Environment.MEDIA_MOUNTED)) {
-            cacheDir = new File(context.getExternalCacheDir(), "Cache");
+            cacheDir = new File(Environment.getExternalStorageDirectory()+"/ALWorkInfo/Cache/");// 输出结果：storage/emulated/0/ALWorkInfo/Cache
+            //cacheDir = new File(context.getExternalCacheDir().getParent(),"Cache"); //storage/emulated/0/Android/data/com.hewaiming.ALWorkInfo/Cache
+         
         } else {
             // SD卡挂载不正常，获取本地缓存文件夹（应用包所在目录）
             cacheDir = context.getCacheDir();
